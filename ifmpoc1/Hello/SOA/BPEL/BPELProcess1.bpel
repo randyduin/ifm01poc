@@ -58,7 +58,12 @@
     <sequence name="main">
         <!-- Receive input from requestor. (Note: This maps to operation defined in BPELProcess1.wsdl) -->
         <receive name="receiveInput" partnerLink="bpelprocess1_client" portType="client:BPELProcess1" operation="process" variable="inputVariable" createInstance="yes"/>
-
+        <assign name="Assign1">
+            <copy>
+                <from>$inputVariable.payload</from>
+                <to>$outputVariable.payload</to>
+            </copy>
+        </assign>
         <!-- 
           Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
         -->
